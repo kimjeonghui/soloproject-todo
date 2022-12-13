@@ -27,7 +27,7 @@ public class TodosController {
 
     @PostMapping
     public ResponseEntity postToTodo(@Valid @RequestBody TodosDto.Post todosPostDto){
-        //log.info("title: {}, order:{}, completed:{}",todosPostDto.getTitle(), todosPostDto.getTodo_order(), todosPostDto.getCompleted());
+        log.info("title: {}, order:{}, completed:{}",todosPostDto.getTitle(), todosPostDto.getTodo_order(), todosPostDto.getCompleted());
         Todos todo = mapper.todosPostDtoToTodos(todosPostDto);
         //log.info("title: {}, order:{}, completed:{}",todo.getTitle(), todo.getTodo_order(), todo.getCompleted());
         Todos todos = todosService.createTodos(mapper.todosPostDtoToTodos(todosPostDto));
