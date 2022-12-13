@@ -20,28 +20,31 @@ public class TodosService {
         return todosRepository.save(todos);
     }
 
-    public Todos updateTodos(Todos todos){
-        Todos findtodos = findTodo(todos.getId()).orElseThrow(
-                ()-> new RuntimeException()
-        );
+    public Todos updateTodos(Long id, Todos todos){
+        Todos findTodo = findTodo(id);
 
         Optional.ofNullable(todos.getTitle())
-                .ifPresent(title -> findtodos.setTitle(title));
+                .ifPresent(title -> findTodo.setTitle(title));
         Optional.ofNullable(todos.getTodo_order())
-                .ifPresent(order -> findtodos.setTodo_order(order));
+                .ifPresent(order -> findTodo.setTodo_order(order));
         Optional.ofNullable(todos.getCompleted())
-                .ifPresent(complete -> findtodos.setCompleted(complete));
+                .ifPresent(complete -> findTodo.setCompleted(complete));
 
-        return todosRepository.save(findtodos);
+        return todosRepository.save(findTodo);
     }
 
     public Page<Todos> findTodos(int page, int size){
-        return todosRepository.findAll(PageRequest.of(page, size,
-                Sort.by("todosOrder").descending()));
+        return todosRepository.findAll(PageRequest.of(page, size));
+        //,Sort.by("todo_order").descending()));
     }
 
-    public Optional<Todos> findTodo(Long id){
-        return todosRepository.findById(id);
+    public Todos findTodo(Long id){
+        Optional<Todos> todo = todosRepository.findById(id);
+        Todos findtodos = todo.orElseThrow(
+                ()-> new RuntimeException()
+        );
+
+        return findtodos;
     }
 
     public void deleteTodo(Long id){
