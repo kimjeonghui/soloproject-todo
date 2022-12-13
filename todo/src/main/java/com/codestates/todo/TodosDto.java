@@ -19,18 +19,12 @@ public class TodosDto {
         private Integer todo_order;
         private Boolean completed;
     }
-
+    @Getter
+    @Setter
     public static class Patch{
-
-        @Nullable
         private String title;
-
-        @Nullable
-        @Positive
-        private int todo_order;
-
-        @Nullable
-        private boolean completed;
+        private Integer todo_order;
+        private Boolean completed;
     }
 
     @AllArgsConstructor
