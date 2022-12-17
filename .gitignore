@@ -88,6 +88,7 @@ fabric.properties
 # .idea/misc.xml
 # *.ipr
 
+.idea/*
 # Sonarlint plugin
 # https://plugins.jetbrains.com/plugin/7973-sonarlint
 .idea/**/sonarlint/
@@ -201,4 +202,3 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij,windows,macos
 
-*.idea
